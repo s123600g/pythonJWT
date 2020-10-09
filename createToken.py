@@ -21,7 +21,7 @@ if __name__ == "__main__":
         print(f"token: {token}")
 
         # 解析Token
-        run_status, msg, content = jwt.dencode_token(token)
+        run_status, msg, content, is_exp = jwt.dencode_token(token)
 
         if run_status:
 

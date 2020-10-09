@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from os import device_encoding
+from os import device_encoding, truncate
 from config import config_args
 
 import jwt
@@ -75,6 +75,7 @@ class pyjwt():
         content = None
         run_status = False
         msg = ""
+        is_exp = False
 
         try:
 
@@ -114,7 +115,9 @@ class pyjwt():
 
         except jwt.ExpiredSignatureError as err:  # 檢查token是否有過期
 
+            run_status = True
             msg = f"Token過期. '{token}'"
+            is_exp = True
 
         except jwt.exceptions.DecodeError as err:
 
@@ -126,7 +129,7 @@ class pyjwt():
             msg = "解析發生錯誤."
             print(f"[pyjwt-dencode_token] {msg} \n{traceback.format_exc()}")
 
-        return run_status, msg, content
+        return run_status, msg, content, is_exp
 
     def generate_payload(self, value=None, exp=None, nbf=None, iss=None, aud=None, iat=None):
         '''
