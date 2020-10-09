@@ -9,8 +9,8 @@ config_args = {
     'secret': 'myTesT123kEy@@10O09!!',
 
     # 設置是否使用RSA公私鑰來處理加密
-    # 'IsUsingRSAKey': True,
-    'IsUsingRSAKey': False,
+    'IsUsingRSAKey': True,
+    # 'IsUsingRSAKey': False,
 
     # 設置公鑰
     'RSA_PublicKey': os.path.join(os.getcwd(), 'public.pem'),
@@ -20,14 +20,14 @@ config_args = {
 
     # 配置標頭訊息表示加密演算法配置
     'headers': {
-        # "alg": "RS256",
-        "alg": "HS256",
+        "alg": "RS256",
+        # "alg": "HS256",
         "typ": "JWT"
     },
 
     # 設置JWT使用的加密演算法
-    # 'algorithm': 'RS256',
-    'algorithm': 'HS256',
+    'algorithm': 'RS256',
+    # 'algorithm': 'HS256',
 
     # 設置預設Token多久過期時間單位，用在呼叫時未設置指定過期時間
     # d --> 天數
