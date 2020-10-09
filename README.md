@@ -25,7 +25,7 @@ pip install pyjwt
 python3 createToken.py
 ```
 
-### 執行範例 - 產生Token
+### 執行範例 - 解析Token
 ```shell=
 python3 decodeToken.py
 ```
