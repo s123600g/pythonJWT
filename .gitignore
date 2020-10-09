@@ -130,3 +130,5 @@ dmypy.json
 
 pyjwt_env/
 .vscode/
+private.pem
+public.pem
