@@ -30,7 +30,20 @@ python3 createToken.py
 python3 decodeToken.py
 ```
 
+
+# 使用RSA Private & Public Key
+透過openssl來進行Private & Public Key產生
+### 產生Private Key
+```shell=
+openssl genrsa -out private.pem 2048
+```
+### 產生Public Key
+```shell=
+openssl rsa -in private.pem -outform PEM -pubout -out public.pem
+```
+
+
 # 參考
 * [pyJWT](https://pyjwt.readthedocs.io/en/latest/index.html)
 * [pyJWT API Reference](https://pyjwt.readthedocs.io/en/latest/api.html)
-
+* [Generate OpenSSL RSA Key Pair from the Command Line](https://rietta.com/blog/openssl-generating-rsa-key-from-command/)
