@@ -2,7 +2,7 @@
 
 from pyjwt import pyjwt
 
-decode_token = b'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjb250ZW50IjoiTXkgSldUIEZpcnN0IiwiZXhwIjoxNjAyMjI4MTI1LCJpc3MiOiJqeXUiLCJpYXQiOjE2MDIyMjgwMDV9._qCqMClMPOpp4QSukEbqWwbkyUPdvlYMGL-FRm9HDvU'
+decode_token = b'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjb250ZW50IjoiTXkgSldUIEZpcnN0IiwiZXhwIjoxNjAyMjM1Mjg3LCJpc3MiOiJqeXUiLCJpYXQiOjE2MDIyMzUxNjd9.cGGjARyn_BAD5dVO46KYNqCRFSN8PXjfMbY3KaLBPT4'
 
 if __name__ == "__main__":
 

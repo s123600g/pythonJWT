@@ -6,6 +6,7 @@ from config import config_args
 import jwt
 import datetime as dtime
 import traceback
+import os
 
 
 class pyjwt():
@@ -22,13 +23,35 @@ class pyjwt():
 
         try:
 
-            # 產生token
-            token = jwt.encode(
-                payload,
-                config_args['secret'],
-                algorithm=config_args['algorithm'],
-                headers=config_args['headers']
-            )
+            #　檢查加密是否使用RSA
+            if config_args['IsUsingRSAKey']:
+
+                # 檢查私鑰是否有存在
+                if os.path.exists(config_args['RSA_PrivateKey']):
+
+                    # 讀取私鑰內容進行加密Token
+                    with open(config_args['RSA_PrivateKey']) as key_file:
+                        token = jwt.encode(
+                            payload=payload,
+                            key=key_file.read(),
+                            algorithm='RS256',
+                            headers=config_args['headers']
+                        )
+
+                else:
+
+                    msg = "產生Token發生錯誤，RSA私鑰不存在."
+                    print(f"[pyjwt-create_token] {msg}")
+
+            else:
+
+                # 產生token
+                token = jwt.encode(
+                    payload=payload,
+                    key=config_args['secret'],
+                    algorithm=config_args['algorithm'],
+                    headers=config_args['headers']
+                )
 
             run_status = True
             msg = "Done."
@@ -55,13 +78,36 @@ class pyjwt():
 
         try:
 
-            # 取得token內容
-            content = jwt.decode(
-                token,
-                config_args['secret'],
-                algorithms=config_args['algorithm'],
-                options=options
-            )
+            #　檢查加密是否使用RSA
+            if config_args['IsUsingRSAKey']:
+
+                # 檢查公鑰是否有存在
+                if os.path.exists(config_args['RSA_PublicKey']):
+
+                    # 讀取公鑰內容進行加密Token
+                    with open(config_args['RSA_PublicKey']) as key_file:
+
+                        content = jwt.decode(
+                            jwt=token,
+                            key=key_file.read(),
+                            algorithm='RS256',
+                            options=options
+                        )
+
+                else:
+
+                    msg = "產生Token發生錯誤，RSA公鑰不存在."
+                    print(f"[pyjwt-dencode_token] {msg}")
+
+            else:
+
+                # 取得token內容
+                content = jwt.decode(
+                    jwt=token,
+                    key=config_args['secret'],
+                    algorithms=config_args['algorithm'],
+                    options=options
+                )
 
             run_status = True
             msg = "Done."
